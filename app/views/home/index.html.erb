@@ -1,0 +1,42 @@
+<% if user_signed_in? %>
+    <% if current_user.role.downcase == 'admin' %>
+        <h3> Welcome <%= current_user.name %>
+            <%= link_to 'See all Buildings', building_index_path, class: "btn btn-primary text-light" %>
+            <%= link_to 'Add Building', new_building_path, class: "btn btn-primary text-light" %>
+            <%= link_to 'See all Request', maintenances_path, class: "btn btn-danger text-light" %>            
+        </h3>
+
+        <table class="table table-striped table-secondary table-hover w-50">
+            <thead class="table-dark">
+                    <th>All Users <i class="fa-solid fa-users"></i></th>
+                    <th>Emails <i class="fa-regular fa-envelope"></i></th>          
+                </tr>
+            </thead>
+            <tbody>
+                <% @user.each do |u| %>
+                    <tr>
+                        <td><%= u.name%></td>
+                        <td><%= u.email%></td>
+                    </tr>
+                <%end%>
+            </tbody>
+        </table>
+    <% elsif current_user.role.downcase == 'building owner' %>
+        <h3> Welcome <%= current_user.name %>
+            
+            <%= link_to 'See all your Buildings', building_index_path, class: "btn btn-info text-light" %>
+            <%= link_to 'Add new Building', new_building_path, class: "btn btn-primary text-light" %>
+            <%= link_to 'See all Request', maintenances_path, class: 'btn btn-danger text-light'%>
+        </h3>
+    <% else %>
+        <h3> Welcome <%= current_user.name %></h3>
+        <%= render partial: 'home/clientbuilding', locals: {b: @b}%>
+    <% end %>
+
+<% else %>    
+	
+    <h2>Welcome to Our 24*7 Service</h2>
+	<h4 class= "text-success">Thanks for Choosing Us</h4>
+
+<% end %>    		
+

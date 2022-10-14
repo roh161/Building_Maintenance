@@ -1,0 +1,49 @@
+<% if user_signed_in?%>
+	<% if @building.present?%>	
+		<table class="table table-striped table-hover">
+			<thead class="table-info">
+				<tr class="header">
+					<th>Name</th>
+					<th>Floors</th>
+					<th>Lifts</th>
+					<th>Apartments</th>
+					<th>Parking Floors</th>
+					<th>Maintenance Cost</th>
+					<th>Building Owners</th>
+					<th>Owner Emails</th>
+					<th colspan="5" class="text-center bg-dark text-light">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @building.each do |u| %>
+					<tr>
+						<td><%= u.name%></td>
+						<td><%= u.floor%></td>
+						<td><%= u.lift%></td>
+						<td><%= u.apartment%></td>
+						<td><%= u.parking_floor%></td>
+						<td><%= u.maintenance_cost%></td>
+						<td><%= u.user.name%></td>
+						<td><%= u.user.email%></td>
+						<% if current_user.role.downcase == 'admin' || current_user.role.downcase == 'building owner'%>
+							<td><%= button_to "Add Staffs", new_building_staff_path(u.id),method: :get, class: "btn btn-sm btn-success text-light" %> </td>
+							<td><%= button_to "See all Staffs", building_staff_index_path(u.id),method: :get, class: "btn btn-sm btn-warning text-dark" %> </td>
+							<td><%= button_to "See all Clients", building_clients_path(u.id),method: :get, class: "btn btn-sm btn-primary text-light" %> </td>
+							<td><%= link_to "Check Building Balance",check_building_balance_path(u.id), class: "btn btn-sm btn-secondary text-light" %> </td>
+							<td><%= link_to "Remove Building", builiding_destroy_path(u.id),data: {turbo_method: :delete ,turbo_confirm: "are you sure"}, class: "btn btn-sm btn-danger text-light" %> </td>
+						<% else %>
+							<td><%= button_to 'Become a client',{controller: 'home', action: 'create', building_id: u.id},method: :post, class: "btn btn-danger text-light" %></td>
+						<% end %>
+					</tr>
+				<%end%>
+			</tbody>
+    </table>
+	<% else %>
+		<h3 class = "text-danger" >No Building Available</h3>
+		<h4>If You want to add building<%= link_to 'click here', new_building_path, class: "btn btn-success text-light"%></h4>
+	<% end %>
+<% else %>
+	<h2>Welcome to Our 24*7 Service</h2>
+	<h4 class= "text-success">Thanks for Choosing Us</h4>
+<% end %>    		
+

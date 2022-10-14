@@ -1,0 +1,20 @@
+<% if @client.present? %>
+    <table class="table table-striped table-secondary table-hover w-50">
+                <thead class="table-dark">
+                        <th>name<i class="fa-solid fa-users"></i></th>
+                        <th>email<i class="fa-regular fa-envelope"></i></th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @client.each do |u| %>
+                        <tr>
+                            <td><%= u.name%></td>
+                            <td><%= u.email%></td>
+                        </tr>
+                    <%end%>
+                </tbody>
+    </table>
+<% else %>
+    <h3 class= "text-danger">No client available in this building.</h3>
+<% end %>

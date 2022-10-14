@@ -1,0 +1,25 @@
+<div class="text-center">
+  <%- if controller_name != 'sessions' %>
+    <p class="text-center text-muted mt-5 mb-0">Have already an account?
+      <%= link_to "Login here", new_session_path(resource_name), class:"text-decoration-none", class:"fw-bold text-body" %><br />
+    </p>
+  <% end %>
+  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <p class="text-center text-muted mt-5 mb-0">New User?
+    <%= link_to "SignUp here", new_registration_path(resource_name), class:"text-decoration-none", class:"fw-bold text-body" %><br />
+  <% end %>
+  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+    <%= link_to "Forgot your password?", new_password_path(resource_name), class:"text-decoration-none", class: "text-danger" %><br />
+  <% end %>
+  <%# <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %> 
+    <%# <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class:"text-decoration-none" %>
+  <%# <% end %> 
+  <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+    <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class:"text-decoration-none" %><br />
+  <% end %>
+  <%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class:"text-decoration-none", method: :post %><br />
+    <% end %>
+  <% end %>
+</div>

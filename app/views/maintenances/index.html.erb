@@ -1,0 +1,32 @@
+<table class="table table-striped table-hover">
+  <thead class="table-dark">
+      <tr>
+          <th>Issue_type</th>
+          <th>Description</th>
+          <th>Client Name</th>
+          <th>Status</th>
+          <% if current_user.role.downcase == "admin" || current_user.role.downcase == "building owner"%>
+            <th> Comment </th>
+          <% end %>
+      </tr>
+  </thead>
+  <tbody>
+      <% @maintenance.each do |m| %>
+          <tr>
+              <td><%= m.issue_type%></td>
+              <td><%= m.description%></td>
+              <td><%= m.user.name%></td>
+              <% if m.owner_comment.present? %>
+                <td><%= m.owner_comment%></td>
+              <% else %>
+                <td class="text-danger"><%= "Pending..."%></td>
+              <% end %>
+              <% if current_user.role.downcase == "admin" || current_user.role.downcase == "building owner"%>
+                <td><%= link_to 'Do your Response', update_path(m.id), class:"btn btn-info text-light" %></td>
+              <% end %>
+          </tr>
+      <%end%>
+  </tbody>
+</table>
+
+<%= link_to "Back", root_path %>

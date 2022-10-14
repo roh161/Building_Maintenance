@@ -1,0 +1,49 @@
+<section class="p-4 p-md-5" style="
+    background-color :  black;
+  ">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-5">
+      <div class="card rounded-3" style="width:120%;">
+        <div class="card-body p-4" >
+            <h3 class="fw-bold mb-4">Add your Card Details here</h3>
+            <%= form_with url: '/charge', method: :post  do |f| %>
+            <div class="row mb-4">
+            <h4 class="text-success">Amount &euro; <%= params[:maintenance_cost]%></h4>
+            <p><%=f.hidden_field :maintenance_cost, value: params[:maintenance_cost]%></p>
+            
+            <%=f.hidden_field :building_id, value: params[:building_id]%>
+              <div class="col-7">
+                <div class="form-outline">
+                    <%=f.text_field :number, class: "form-control form-control-lg"%>
+                    <%=f.label :number, "Card_number",class:"form-label"%>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-outline">
+                    <%=f.text_field :exp_month, class: "form-control form-control-lg"%>
+                  <%=f.label :exp_month, "Expire_month",class:"form-label"%>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <div class="form-outline">
+                    <%=f.text_field :exp_year, class: "form-control form-control-lg"%>
+                  <%=f.label :exp_year, "Expire_year",class:"form-label"%>
+                </div>
+              </div>
+
+              <div class="col-2">
+                <div class="form-outline">
+                    <%=f.text_field :cvc, class:"form-control form-control-lg"%>
+                    <%=f.label :Cvc, class: "form-label" %>
+                </div>
+              </div>
+
+            </div>
+            <%=f.submit "continue", class:"btn btn-info"%>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%end%>

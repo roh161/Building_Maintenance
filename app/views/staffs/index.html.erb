@@ -1,0 +1,30 @@
+<% if user_signed_in? %>
+    <% if @staff.present? %>
+        <table class="table table-striped table-hover w-50">
+        <thead class="table-dark">
+            <tr>
+                <th>Staff Name</th>
+                <th>Staff Salary</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @staff.each do |s| %>
+                <tr>
+                    <td><%= s.name%></td>
+                    <td><%= s.salary%></td>
+                    <td><%= link_to "Fire Staff", staffdestroyer_path(s.id,params[:building_id]), class: "btn btn-danger text-light", data: {turbo_method: 'delete'}%>
+                </tr>
+            <%end%>
+        </tbody>
+        </table>
+
+        <%= link_to "Back", building_index_path %>
+    <% else %>
+        <h3 class = "text-danger"> No staff found for this building </h3>
+        <h4> If You want to add a new staff <%= button_to "Click here", new_building_staff_path ,method: :get, class: "btn btn-sm btn-success text-light" %> </h4>
+    <% end %>
+<% else %>
+    <h2>Welcome to Our 24*7 Service</h2>
+	<h4 class= "text-success">Thanks for Choosing Us</h4>
+<% end %>

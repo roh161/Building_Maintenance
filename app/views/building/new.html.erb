@@ -1,0 +1,56 @@
+<% if user_signed_in? %>
+  <section class="h-100 h-custom" style="background-color: #8fc4b7;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-8 col-xl-6">
+          <div class="card rounded-3">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Building info</h3>
+              <div class="px-md-2">
+                <%= form_with do |form| %>
+                  <div class="form-group">
+                    <%= form.label :Name %>
+                    <%= form.text_field :name, class: 'form-control' %>
+                  </div><br>
+
+                  <div class="form-group">
+                    <%= form.label :Floor %>
+                    <%= form.text_field :floor, class: 'form-control' %>
+                  </div><br>
+
+                  <div class="form-group">
+                    <%= form.label :Parking_floor %>
+                    <%= form.text_field :parking_floor, class: 'form-control' %>
+                  </div><br>
+
+                  <div class="form-group">
+                    <%= form.label :Number_of_Lift %>
+                    <%= form.text_field :lift, class: 'form-control' %>
+                  </div><br>
+
+                  <div class="form-group">
+                    <%= form.label :Number_of_Apartment %>
+                    <%= form.text_field :apartment, class: 'form-control' %>
+                  </div><br>
+
+                  <div class="form-group">
+                    <%= form.label :Maintenance_Cost %>
+                    <%= form.text_field :maintenance_cost, class: 'form-control' %>
+                  </div><br>
+                  
+                  <div class="form-group">
+                    <%= form.submit class: 'form-control btn-success' %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+
+
+

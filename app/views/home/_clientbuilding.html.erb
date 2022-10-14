@@ -1,0 +1,42 @@
+<% if user_signed_in? %>
+	<% if b.present?%>	
+			<table class="table table-striped table-hover">
+				<thead class="table-info">
+					<tr class="header">
+						<th>Name</th>
+						<th>Floors</th>
+						<th>Lifts</th>
+						<th>Apartments</th>
+						<th>Parking Floors</th>
+						<th>Maintenance Cost</th>
+						<th>Building Owners</th>
+						<th>Owner Emails</th>
+						<th colspan="5" class="text-center bg-dark text-light">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% [b].each do |u| %>
+						<tr>
+							<td><%= u.name%></td>
+							<td><%= u.floor%></td>
+							<td><%= u.lift%></td>
+							<td><%= u.apartment%></td>
+							<td><%= u.parking_floor%></td>
+							<td><%= u.maintenance_cost%></td>
+							<td><%= u.user.name%></td>
+							<td><%= u.user.email%></td>
+							<td><%= link_to 'Pay Maintenance Fee here', payment_path(u.id,u.maintenance_cost), class: 'btn btn-success text-light' %></td>
+							<td><%= link_to 'Raise Request', new_maintenance_path, class: "btn btn-danger text-light" %></td>
+							<td><%= link_to 'Check Request Status', maintenances_path, class: 'btn btn-danger text-light'%></td>
+						</tr>
+					<%end%>
+				</tbody>
+			</table>
+	<% else %>
+		<h3 class = "text-danger" >No Building Available</h3>
+		<h4>If you want to became a client of any building then,<%= link_to 'Click here', building_index_path, class: "btn btn-info text-light" %></h4>
+	<% end %>
+<% else %>
+	<h2>Welcome to Our 24*7 Service</h2>
+	<h4 class= "text-success">Thanks for Choosing Us</h4>
+<% end %>    		

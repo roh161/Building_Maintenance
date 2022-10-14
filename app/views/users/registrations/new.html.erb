@@ -1,0 +1,44 @@
+<section class="vh-100 bg-image d-block"
+  style="background-color: pink">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Sign Up</h2>
+
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= render "users/shared/error_messages", resource: resource %>
+
+                <div class="form-outline mb-4">
+                    <%= f.label :Select_Your_Role %><br />
+                  <%= f.select :role, ['Building Owner', 'Client'], autofocus: true, autocomplete: "role", class: "form-control form-control-lg", placeholder: "Select your Role" %>
+                </div>
+  
+                <div class="form-outline mb-4">
+                  <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control form-control-lg", placeholder: "Name" %>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg", placeholder: "Email" %>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <%= f.password_field :password, autocomplete: "new-password", class:"form-control form-control-lg", placeholder: "Password" %>
+                  <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+                  <% end %>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Confirm Password", class:"form-control form-control-lg" %>
+                </div>
+
+
+                <div class="actions d-flex justify-content-center">
+                    <%= f.submit "Sign up", class:"btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
+                </div>
+              <% end %>
+            <%= render "users/shared/links" %>
+</section>

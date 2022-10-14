@@ -3,7 +3,7 @@
                 <thead class="table-dark">
                         <th>name<i class="fa-solid fa-users"></i></th>
                         <th>email<i class="fa-regular fa-envelope"></i></th>
-                        
+                        <th>Request</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -11,6 +11,7 @@
                         <tr>
                             <td><%= u.name%></td>
                             <td><%= u.email%></td>
+                            <td><%= link_to 'See all Request', {controller: 'maintenances', action: 'index', id: u.id}, class: 'btn btn-danger text-light'%></td>
                         </tr>
                     <%end%>
                 </tbody>

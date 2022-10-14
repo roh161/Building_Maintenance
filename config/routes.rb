@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/building/:building_id', to: 'home#create'
   get '/building/:building_id/home/showclients', to: 'home#showclients', as: 'building_clients'
   resources 'maintenances'
+  get 'maintenances/:user_id', to: 'maintenances#index', as: 'request'
   post 'maintenances/new', to: 'maintenances#create'
   get 'edit/:id', to: 'maintenances#edit', as: 'update'
   post 'update/:id', to: 'maintenances#update', as: 'owner_comment'

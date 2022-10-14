@@ -2,13 +2,11 @@
 
 class MaintenancesController < ApplicationController
   def index
-    case current_user.role.downcase
-    when 'admin'
-      @maintenance = Maintenance.all
-    when 'building owner'
-      @maintenance = Maintenance.all
-    when 'client'
+    if current_user.role.downcase == 'client'
       @maintenance = current_user.maintenances.all
+    else
+      @usr = User.find(params[:id])
+      @maintenance = @usr.maintenances
     end
   end
 

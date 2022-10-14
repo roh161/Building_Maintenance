@@ -49,8 +49,8 @@ class StripeService
                           })
   end
 
-  def maintenance_payment(user_id,building_id,amount)
-    @payment = Payment.new(user_id: user_id, building_id: building_id,amount: amount)
+  def maintenance_payment(user_id, building_id, amount)
+    @payment = Payment.new(user_id:, building_id:, amount:)
     @payment.save
   end
 end

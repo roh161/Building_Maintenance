@@ -6,5 +6,6 @@ class Building < ApplicationRecord
   belongs_to :user
   has_many :payments
 
-  validates :name, :floor, :parking_floor, :maintenance_cost, :apartment, :lift, presence: { message: "must be given please" }
+  validates :name, :floor, :parking_floor, :maintenance_cost, :apartment, :lift,
+            presence: { message: 'must be given please' }
 end

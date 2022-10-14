@@ -32,10 +32,10 @@ class HomeController < ApplicationController
     building = Building.find_by(id: params[:building_id]).name
     check = true
     if !params[:cvc].match(/\d{3}/)
-      flash[:alert]="invalid cvc"
+      flash[:alert] = 'invalid cvc'
       check = false
     elsif !params[:number].match(/\d{16}/)
-      flash[:alert]="invalid card number"
+      flash[:alert] = 'invalid card number'
       check = false
     end
     if check
@@ -43,7 +43,7 @@ class HomeController < ApplicationController
       token = s.create_card_token(params)
       customer = s.find_or_create_customer(current_user)
       token = s.create_card_token(params)
-      card = s.create_stripe_customer_card(token.id,customer)
+      card = s.create_stripe_customer_card(token.id, customer)
       s.create_stripe_charge(params[:maintenance_cost], customer.id, card.id, building)
       current_user.change_user_to_paid
       s.maintenance_payment(current_user.id, params[:building_id], params[:maintenance_cost])

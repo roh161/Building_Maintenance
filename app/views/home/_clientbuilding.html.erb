@@ -1,5 +1,9 @@
 <% if user_signed_in? %>
-	<% if b.present?%>	
+	<% if b.present?%>
+		  <hr>
+			<h4>If you have any maintenances issues, Here you can <%= link_to 'Raise Request', new_maintenance_path, class: "btn btn-danger text-light" %></h4>
+			<h5>Here you can check your request status <%= link_to 'Check Request Status', maintenances_path, class: 'btn btn-info text-light'%></h5>
+			<hr><h3>Building Details</h3>
 			<table class="table table-striped table-hover">
 				<thead class="table-info">
 					<tr class="header">
@@ -26,14 +30,12 @@
 							<td><%= u.user.name%></td>
 							<td><%= u.user.email%></td>
 							<td><%= link_to 'Pay Maintenance Fee here', payment_path(u.id,u.maintenance_cost), class: 'btn btn-success text-light' %></td>
-							<td><%= link_to 'Raise Request', new_maintenance_path, class: "btn btn-danger text-light" %></td>
-							<td><%= link_to 'Check Request Status', maintenances_path, class: 'btn btn-danger text-light'%></td>
 						</tr>
 					<%end%>
 				</tbody>
 			</table>
 	<% else %>
-		<h3 class = "text-danger" >No Building Available</h3>
+		<h3 class = "text-success" >You are a new User</h3>
 		<h4>If you want to became a client of any building then,<%= link_to 'Click here', building_index_path, class: "btn btn-info text-light" %></h4>
 	<% end %>
 <% else %>

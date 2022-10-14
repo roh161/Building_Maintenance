@@ -3,10 +3,10 @@
 class MaintenancesController < ApplicationController
   def index
     if current_user.role.downcase == 'client'
-      @maintenance = current_user.maintenances.all
+      @requestinfo = current_user.maintenances.all
     else
       @usr = User.find(params[:id])
-      @maintenance = @usr.maintenances
+      @requestinfo = @usr.maintenances
     end
   end
 

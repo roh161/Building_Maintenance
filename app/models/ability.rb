@@ -3,15 +3,12 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)  
-    if user.present?
-      if user.role == "admin"
-        can :manage, :all
-      elsif user.role == "building owner"
-        can :manage, :all, user_id:user.id
-      elsif user.role == "client"
-        can :read, :all
-      end
-    end
+  def initialize(user) 
+    return unless user.present?  # additional permissions for logged in users (they can read their own posts)
+    can :read, Building, user: user
+    can :read, Maintenance, user: user
+
+    return unless user.admin?  # additional permissions for administrators
+    can :manage, :all
   end
 end

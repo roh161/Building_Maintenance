@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_one :building
   has_many :payments
 
+  validates :name, :role, presence: true
+
   def change_user_to_paid
     update(membership: 1)
   end

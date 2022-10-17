@@ -15,8 +15,8 @@ class BuildingController < ApplicationController
       flash[:notice] = 'Successfully Added building.'
       redirect_to building_index_path
     else
-      flash[:error] = 'An error has occurred while creating the building.'
-      render 'new'
+      flash[:error] = @building.errors.full_messages
+      redirect_to new_building_path
     end
   end
 

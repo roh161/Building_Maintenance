@@ -28,6 +28,13 @@ class HomeController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:notice] = 'user has been destroyed successfully'
+    redirect_to root_path
+  end
+
   def charge
     building = Building.find_by(id: params[:building_id]).name
     check = true

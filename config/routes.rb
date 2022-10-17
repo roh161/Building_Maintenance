@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post '/building/:building_id/staffs/new', to: 'staffs#create'
   get '/building/:building_id/staffs/index', to: 'staffs#index', as: 'building_staff_index'
   delete 'staffs/destroy/:id/:bid', to: 'staffs#destroy', as: 'staffdestroyer'
+  delete 'home/destroy/:id', to: 'home#destroy', as: 'user_destroyer'
   post '/building/:building_id', to: 'home#create'
   get '/building/:building_id/home/showclients', to: 'home#showclients', as: 'building_clients'
   resources 'maintenances'

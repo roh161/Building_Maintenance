@@ -16,11 +16,6 @@ class HomeController < ApplicationController
     @client = @building.clients.all
   end
 
-  # def clientrequest
-  #   @usr = User.find(params[:id])
-  #   @clientrequest = @user.maintaincances
-  # end
-
   def create
     building = Building.find(params[:building_id])
     building.clients << current_user

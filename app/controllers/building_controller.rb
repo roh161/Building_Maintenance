@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 class BuildingController < ApplicationController
+  load_and_authorize_resource
+
   def index
-    @building = if current_user.role.downcase == 'admin' || current_user.role.downcase == 'client'
-                  Building.all
-                else
-                  current_user.buildings.all
-                end
+    @building = Building.accessible_by(current_ability).all
   end
 
   def create

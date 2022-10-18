@@ -31,7 +31,13 @@
   </table>
 
   <%= link_to "Back", root_path %>
-<% else %> 
-  <h2 class="text-danger"> You have no Request </h2>
-  <h3> Please first raise any request here <%= link_to 'Raise Request', new_maintenance_path, class: "btn btn-danger text-light" %></h3>
+<% else %>
+  <% if current_user.role.downcase == "admin" || current_user.role.downcase == "building owner"%>
+    <h2 class="text-danger"> No Request Found</h2>
+    <%= link_to "Back", root_path %>
+  <% else %>
+    <h2 class="text-danger"> You have no Request </h2>
+    <h3> Please first raise any request here <%= link_to 'Raise Request', new_maintenance_path, class: "btn btn-danger text-light" %></h3>
+    <%= link_to "Back", root_path %>                                                                                                                                       
+  <% end %>
 <% end %>

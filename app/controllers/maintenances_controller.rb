@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class MaintenancesController < ApplicationController
+  load_and_authorize_resource
   def index
     if current_user.role.downcase == 'client'
       @requestinfo = current_user.maintenances.all
@@ -22,7 +23,7 @@ class MaintenancesController < ApplicationController
       redirect_to maintenances_path
     else
       flash[:error] = 'An error has occurred while creating the maintenance.'
-      render 'new'
+      redirect_to new_maintenance_path
     end
   end
 
@@ -41,7 +42,7 @@ class MaintenancesController < ApplicationController
       redirect_to maintenances_path
     else
       flash[:error] = 'An error has occurred while updating the maintenance.'
-      redirect_to maintenances_path
+      redirect_to maintenance_path
     end
   end
 

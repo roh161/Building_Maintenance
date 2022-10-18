@@ -13,7 +13,7 @@ class Ability
         can %i[create read update destroy], Staff
         can %i[read update destroy], Maintenance
         can [:read], Account
-      elsif user.role == 'client'
+      elsif user.role.downcase == 'client'
         can :read, Building
         can %i[create read update destroy], Maintenance, user_id: user.id
       end

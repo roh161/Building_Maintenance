@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class MaintenancesController < ApplicationController
+  load_and_authorize_resource
   def index
     if current_user.role.downcase == 'client'
       @requestinfo = current_user.maintenances.all

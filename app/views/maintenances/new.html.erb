@@ -1,34 +1,39 @@
 <% if user_signed_in? %>
-  <section class="h-100 h-custom" style="background-color: #8fc4b7;">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-lg-8 col-xl-6">
-          <div class="card rounded-3">
-            <div class="card-body p-4 p-md-5">
-              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Request info</h3>
-              <div class="px-md-2">
-                <%= form_with do |form| %>
-                  <div class="form-group">
-                    <%= form.label :Issue_type %>
-                    <%= form.select :issue_type,['Basic Maintenance', 'Electricity', 'Cleaning', 'Water', 'Restoration', 'Others'], class: 'form-control' %>
-                  </div><br>
+  <% if current_user.payments.present?%>
+    <section class="h-100 h-custom" style="background-color: #8fc4b7;">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-lg-8 col-xl-6">
+            <div class="card rounded-3">
+              <div class="card-body p-4 p-md-5">
+                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Request info</h3>
+                <div class="px-md-2">
+                  <%= form_with do |form| %>
+                    <div class="form-group">
+                      <%= form.label :Issue_type %>
+                      <%= form.select :issue_type,['Basic Maintenance', 'Electricity', 'Cleaning', 'Water', 'Restoration', 'Others'], class: 'form-control' %>
+                    </div><br>
 
-                  <div class="form-group">
-                    <%= form.label :Description %>
-                    <%= form.text_area :description, class: 'form-control' %>
-                  </div><br>
-                  
-                  <div class="form-group">
-                    <%= form.submit class: 'form-control btn-success' %>
-                  </div>
-                <% end %>
+                    <div class="form-group">
+                      <%= form.label :Description %>
+                      <%= form.text_area :description, class: 'form-control' %>
+                    </div><br>
+                    
+                    <div class="form-group">
+                      <%= form.submit class: 'form-control btn-success' %>
+                    </div>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  <% else %>
+    <h2>Please pay the maintenance fee first then you can raise your request.</h2>
+    <%= link_to "Back", root_path %>
+  <% end %>
 <% end %>
 
 

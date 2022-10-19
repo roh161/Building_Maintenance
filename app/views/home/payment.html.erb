@@ -16,27 +16,27 @@
                 <%=f.hidden_field :building_id, value: params[:building_id]%>
                   <div class="col-7">
                     <div class="form-outline">
-                        <%=f.text_field :number, class: "form-control form-control-lg"%>
+                        <%=f.text_field :number, class: "form-control form-control-lg", placeholder:"Enter 16 digit card number"%>
                         <%=f.label :number, "Card_number",class:"form-label"%>
                     </div>
                   </div>
                   <div class="col-3">
                     <div class="form-outline">
-                        <%=f.text_field :exp_month, class: "form-control form-control-lg"%>
+                        <%=f.text_field :exp_month, class: "form-control form-control-lg", placeholder:"12"%>
                       <%=f.label :exp_month, "Expire_month",class:"form-label"%>
                     </div>
                   </div>
 
                   <div class="col-3">
                     <div class="form-outline">
-                        <%=f.text_field :exp_year, class: "form-control form-control-lg"%>
+                        <%=f.text_field :exp_year, class: "form-control form-control-lg", placeholder:"2025"%>
                       <%=f.label :exp_year, "Expire_year",class:"form-label"%>
                     </div>
                   </div>
 
                   <div class="col-2">
                     <div class="form-outline">
-                        <%=f.text_field :cvc, class:"form-control form-control-lg"%>
+                        <%=f.text_field :cvc, class:"form-control form-control-lg", placeholder:"201"%>
                         <%=f.label :Cvc, class: "form-label" %>
                     </div>
                   </div>

@@ -30,6 +30,9 @@
 							<td><%= u.user.name%></td>
 							<td><%= u.user.email%></td>
 							<td><%= link_to 'Pay Maintenance Fee here', payment_path(u.id,u.maintenance_cost), class: 'btn btn-success text-light' %></td>
+							<% if current_user.payments.present?%>
+								<td><%= link_to 'See all Transactions', transaction_path(current_user.id), class: 'btn btn-success text-light' %></td>
+							<% end %>
 						</tr>
 					<%end%>
 				</tbody>

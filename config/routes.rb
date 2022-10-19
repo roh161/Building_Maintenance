@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get 'payment/:building_id/:maintenance_cost', to: 'home#payment', as: 'payment'
   post 'charge', to: 'home#charge', as: 'charge'
   get 'total_building_balance/:id', to: 'home#total_building_balance', as: 'check_building_balance'
-
+  get 'transaction/:id', to: 'home#transaction', as: 'transaction'
   resources 'building' do
     resources 'staffs', only: %i[new]
   end

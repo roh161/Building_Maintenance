@@ -1,0 +1,21 @@
+<h3>Building Name:- <%= @b.name%></h3>
+<table class="table table-striped table-hover w-50">
+        <thead class="table-dark">
+            <tr>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @user.payments.each do |i| %>
+                <tr>
+                  <td><%= i.amount%></td>
+                  <td><%= i.created_at.strftime('%D')%></td>
+                  <td><%= i.created_at.strftime('%I:%M %p')%></td>
+                  <td class="text-success"><%="Successfull"%></td>                      
+                </tr>
+            <%end%>
+        </tbody>
+        </table>

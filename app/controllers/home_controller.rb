@@ -26,6 +26,11 @@ class HomeController < ApplicationController
     redirect_to root_path
   end
 
+  def transaction
+    @user = User.find(params[:id])
+    @b = Building.find_by(id: current_user&.building_id)
+  end
+
   def charge
     building = Building.find_by(id: params[:building_id]).name
     check = true

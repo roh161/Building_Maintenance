@@ -11,6 +11,11 @@ class MaintenancesController < ApplicationController
     end
   end
 
+  # def checkpayment
+  #   @user = User.find(params[:id])
+  #   @clientpayment = @user.payments
+  # end
+
   def new
     @maintenance = Maintenance.new
   end

@@ -46,6 +46,13 @@ class MaintenancesController < ApplicationController
     end
   end
 
+  def destroy
+    @maintenance = Maintenance.find(params[:id])
+    @maintenance.destroy
+    flash[:notice] = 'Your Request was successfully withdrawn.'
+    redirect_to maintenances_path
+  end
+
   private
 
   def maintenance_params

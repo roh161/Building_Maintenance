@@ -7,10 +7,6 @@ class HomeController < ApplicationController
     @b = Building.find_by(id: current_user&.building_id)
   end
 
-  def show; end
-
-  def payment; end
-
   def showclients
     @building = Building.find(params[:building_id])
     @client = @building.clients.all
@@ -63,4 +59,9 @@ class HomeController < ApplicationController
     @balance = Account.update(building_balance: total)
     @account = Account.all
   end
+
+  def show; end
+
+  def payment; end
+  
 end

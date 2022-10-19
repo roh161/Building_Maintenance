@@ -6,6 +6,9 @@
             <th>Description</th>
             <th>Client Name</th>
             <th>Status</th>
+            <% if current_user.role.downcase == "client" %>
+              <th>Action</th>
+            <% end %>
             <% if current_user.role.downcase == "admin" || current_user.role.downcase == "building owner"%>
               <th> Comment </th>
             <% end %>
@@ -22,6 +25,9 @@
                 <% else %>
                   <td class="text-danger"><%= "Pending..."%></td>
                 <% end %>
+                <% if current_user.role.downcase == "client" %>
+                  <td><%= link_to "withdrawn request", client_maintenance_path(m.id),data: {turbo_method: :delete ,turbo_confirm: "are you sure"}, class: "btn btn-danger text-light"%></td>
+                <% end %>
                 <% if current_user.role.downcase == "admin" || current_user.role.downcase == "building owner"%>
                   <td><%= link_to 'Do your Response', update_path(m.id), class:"btn btn-info text-light" %></td>
                 <% end %>
@@ -31,11 +37,11 @@
   </table>
 
   <%= link_to "Back", root_path %>
-<% if current_user.role.downcase == "admin" || current_user.role.downcase == "building owner"%>
-    <h2 class="text-danger"> No Request Found</h2>
-    <%= link_to "Back", root_path %>
-  <% else %>
-    <h2 class="text-danger"> You have no Request </h2>
-    <h3> Please first raise any request here <%= link_to 'Raise Request', new_maintenance_path, class: "btn btn-danger text-light" %></h3>
-    <%= link_to "Back", root_path %>                                                                                                                                       
-  <% end %>
+<% elsif current_user.role.downcase == "admin" || current_user.role.downcase == "building owner"%>
+      <h2 class="text-danger"> No Request Found</h2>
+      <%= link_to "Back", root_path %>
+<% else %>
+      <h2 class="text-danger"> You have no Request </h2>
+      <h3> Please first raise any request here <%= link_to 'Raise Request', new_maintenance_path, class: "btn btn-danger text-light" %></h3>
+      <%= link_to "Back", root_path %>
+<% end %>                                                                                                                                       

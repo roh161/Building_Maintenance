@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Maintenance table for stroring Maintenance information
 class CreateMaintenances < ActiveRecord::Migration[7.0]
   def change
     create_table :maintenances do |t|

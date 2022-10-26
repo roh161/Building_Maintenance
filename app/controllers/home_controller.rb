@@ -34,13 +34,6 @@ class HomeController < ApplicationController
   def charge
     building = Building.find_by(id: params[:building_id]).name
     check = true
-    if !params[:cvc].match(/\d{3}/)
-      flash[:alert] = 'invalid cvc'
-      check = false
-    elsif !params[:number].match(/\d{16}/)
-      flash[:alert] = 'invalid card number'
-      check = false
-    end
     if check
       s = StripeService.new
       token = s.create_card_token(params)
@@ -68,5 +61,4 @@ class HomeController < ApplicationController
   def show; end
 
   def payment; end
-  
 end

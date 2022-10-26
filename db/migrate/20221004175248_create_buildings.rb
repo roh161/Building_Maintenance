@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# builiding table for stroring building information
 class CreateBuildings < ActiveRecord::Migration[7.0]
   def change
     create_table :buildings do |t|

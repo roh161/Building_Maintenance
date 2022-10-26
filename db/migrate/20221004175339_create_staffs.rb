@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Staff table for stroring staff information
 class CreateStaffs < ActiveRecord::Migration[7.0]
   def change
     create_table :staffs do |t|
